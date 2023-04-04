@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Kanji Handwriting Search</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="input-group header">
+      <input autocomplete="off" type="text" placeholder="Draw Kanji below to search..." class="form-control searchBar" id="searchbar">
+      <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-backspace backSpace" id="backarrow"
+        viewBox="0 0 16 16">
+        <path
+          d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z" />
+        <path
+          d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z" />
+      </svg>
+      <a href="https://www.jisho.org/search/" id="search"><button class="btn btn-success" type="button">Search</button></a>
+    </div>
+  <div class="content">
+    <div class="middle">
+      <div class="drawingBoard loading"><span>Loading...</span></div>
+      <div class="commands">
+        <div class="cmd cmdUndo">Undo</div>
+        <div class="cmd cmdClear">Clear</div><br/>
+      </div>
+    </div>
+  </div>
+  <div class="rowBottom">
+    <div class="charPicker mmahLookupChars" id="resultTray"></div>
+  </div>  
+
+  <script src="../library/lib/jquery-3.1.1.min.js"></script>
+  <script src="../dist/hanzilookup.min.js"></script>
+  <script>
+    var hanziLookupDemoApp = (function () {
+      var _filesToLoad;
+      var _drawingBoard;
+
+      $(document).ready(function () {
+        // Only fetch data (large, takes long) when the page has loaded
+        _filesToLoad = 2;
+        HanziLookup.init("mmah", "../dist/mmah.json", fileLoaded);
+        HanziLookup.init("orig", "../dist/orig.json", fileLoaded);
+      });
+
+      // Initializes mini-app once all scripts have loaded
+      function fileLoaded(success) {
+        if (!success) {
+          _filesToLoad = -1;
+          $(".drawingBoard span").text("Failed to load data.");
+          return;
+        }
+        --_filesToLoad;
+        if (_filesToLoad != 0) return;
+        // All data scripts loaded
+        $(".drawingBoard").removeClass("loading");
+        // Create handwriting canvas (this is optional, you can bring your own)
+        _drawingBoard = HanziLookup.DrawingBoard($(".drawingBoard").first(), lookup);
+        // Undo/redo commands - have to do with input
+        $(".cmdUndo").click(function (evt) {
+          _drawingBoard.undoStroke();
+          _drawingBoard.redraw();
+          lookup();
+        });
+        $(".cmdClear").click(function (evt) {
+          _drawingBoard.clearCanvas();
+          _drawingBoard.redraw();
+          lookup();
+          document.getElementById("resultTray").innerHTML = "";
+        });
+      }
+
+      // Fetches hand-drawn input from drawing board and looks up Hanzi
+      function lookup() {
+        // Decompose character from drawing board
+        var analyzedChar = new HanziLookup.AnalyzedCharacter(_drawingBoard.cloneStrokes());
+        // Look up with original HanziLookup data
+        // var matcherOrig = new HanziLookup.Matcher("orig");
+        // matcherOrig.match(analyzedChar, 8, function(matches) {
+        //   showResults($(".hanziLookupChars"), matches);
+        // });
+        // Look up with MMAH data
+        var matcherMMAH = new HanziLookup.Matcher("mmah");
+        matcherMMAH.match(analyzedChar, 8, function(matches) {
+          showResults($(".mmahLookupChars"), matches);
+        });
+      }
+
+      // Populates UI with (ordered) Hanzi matches
+      function showResults(elmHost, matches) {
+        elmHost.html("");
+        for (var i = 0; i != matches.length; ++i) {
+          elmHost.append("<span id=\"result" + i + "\">" + matches[i].character + "</span>");
+          document.getElementById("result" + i).addEventListener("click", function(){
+            document.getElementById("searchbar").value += this.innerText;
+            _drawingBoard.clearCanvas();
+            _drawingBoard.redraw();
+            lookup();
+            elmHost.html("");
+          });
+        }
+      }
+
+      //remove 1 char from searchbar on backarrow click
+      document.getElementById("backarrow").addEventListener("click", function(){
+        c = document.getElementById("searchbar").value.substring(0, document.getElementById("searchbar").value.length - 1);
+        document.getElementById("searchbar").value = c;
+      });
+
+      //search button
+      document.getElementById("search").addEventListener("click", function(){
+        document.getElementById("search").setAttribute("href", "https://www.jisho.org/search/" + document.getElementById("searchbar").value);
+      });
+      
+    })();
+  </script>
+</body>
+</html>
