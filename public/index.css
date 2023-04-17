@@ -37,7 +37,8 @@ h2 {
 .content,
 .header,
 .rowBottom {
-    width: 810px;
+    width: 100%;
+    max-width: 810px;
     margin: 0 auto;
     float: none;
     background-color: var(--card-color);
@@ -70,7 +71,7 @@ h2 {
 }
 
 .drawingBoard {
-    width: 70%;
+    width:70%;
     aspect-ratio: 1/1;
     margin-left: 15%;
     cursor: crosshair;
@@ -133,9 +134,9 @@ h2 {
 .charPicker {
     /* NOTE: old width was 400px, old height was 70px*/
     padding: 3px;
-    height: 140px;
+    min-height: 75px;
     width: 100%;
-    font-size: 95px;
+    font-size: min(10.5vw,95px);
     background-color: var(--canvas-color);
     overflow: hidden;
     color: #000000;
@@ -153,7 +154,8 @@ h2 {
     padding: 3px;
     height: 50px;
     width: 80%;
-    font-size: 35px;
+    font-size: min(5vw,36px);
+    
     background-color: var(--canvas-color);
     overflow: hidden;
     color: #000000;
