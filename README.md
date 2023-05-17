@@ -18,11 +18,12 @@ the dictionary that everyone already knows and loves, Jisho.
 This is a personal project that I designed to solve a problem I frequently had while I was learning Japanese.  
 I would often come across kanji that I did not recognize and had to look up the meaning of, but lacked a convenient  
 tool to do so. There were a few different options that I always found myself going between, but none of them were  
-consistently what I needed. The site that I used most frequently was [kanji.sljfaq.org](kanji.sljfaq.org) because I  
-found that had the most reliable character recognition algorithm. The only problem was that it only allowed you to  
-search for one kanji at a time. This meant that if you wanted to find the meaning of a word comprised of multiple  
-kanji, you had to search each individual one, and then copy them all into a dictionary site to find the meaning.  
-That brings me to the next option, [jisho.org](jisho.org). Jisho is an excellent english/japanese dictionary, and it  
+consistently what I needed.  
+The site that I used most frequently was [kanji.sljfaq.org](https://kanji.sljfaq.org/) because I found that had the most reliable
+character recognition algorithm. The only problem was that it only allowed you to search for one kanji at a time.
+This meant that if you wanted to find the meaning of a word comprised of multiple kanji, you had to search each
+individual one, and then copy them all into a dictionary site to find the meaning.  
+That brings me to the next option, [jisho.org](https://jisho.org/). Jisho is an excellent english to japanese dictionary, and it  
 even has a feature to search kanji by drawing built into the site. The only problem is that the algorithm is really  
 inconsistent and often doesn't even come close to the kanji you are trying to search for. The last option that I  
 used was called Yomiwa, which had a great algorithm with multi-kanji search and a built in dictionary, but it is only  
