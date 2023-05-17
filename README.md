@@ -37,5 +37,5 @@ this the tool that any Japanese learner dreams of.
 ## License
 
 This tool is built upon multiple existing projects which are credited below.  
-(HanziLookupJS)[https://github.com/gugray/HanziLookupJS]  
-(makemeahanzi)[https://github.com/skishore/makemeahanzi]
+[HanziLookupJS](https://github.com/gugray/HanziLookupJS)  
+[makemeahanzi](https://github.com/skishore/makemeahanzi)
