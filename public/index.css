@@ -133,8 +133,8 @@ h2 {
 
 .charPicker {
     /* NOTE: old width was 400px, old height was 70px*/
-    padding: 3px;
-    min-height: 75px;
+    padding: 0px;
+    min-height: min(10.5vw, 95px);
     width: 100%;
     font-size: min(10.5vw,95px);
     background-color: var(--canvas-color);
