@@ -2,8 +2,8 @@
 
 ## Website Link
 
-The site is hosted on firebase at this link:  
-[kanji-handwriting-search.web.app](kanji-handwriting-search.web.app)
+Try the tool here:  
+[kanji-handwriting-search.web.app](https://kanji-handwriting-search.web.app/public/index.html)
 
 ## Description
 
