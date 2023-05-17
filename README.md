@@ -27,12 +27,12 @@ That brings me to the next option, [jisho.org](https://jisho.org/). Jisho is an 
 even has a feature to search kanji by drawing built into the site. The only problem is that the algorithm is really  
 inconsistent and often doesn't even come close to the kanji you are trying to search for. The last option that I  
 used was called Yomiwa, which had a great algorithm with multi-kanji search and a built in dictionary, but it is only  
-available as a mobile app and not a desktop website, so sometimes it wasn't what I was looking for. This led me to  
-design a solution that combines the best of all the above options, leaving behind the worst. Kanji Handwriting Search  
-is a site that serves the sole purpose of allowing the user to hand-draw kanji and add as many as they want to the  
-search bar, and then click search to get the definition on Jisho. This combination of a good recognition algorithm,  
-the ability to search multiple kanji at once, and the extensive data available on Jisho make this the tool that any  
-Japanese learner dreams of.
+available as a mobile app and not a desktop website, so sometimes it wasn't what I was looking for.  
+This led me to design a solution that combines the best of all the above options, leaving behind the worst. Kanji
+Handwriting Search is a site that serves the sole purpose of allowing the user to hand-draw kanji and add as many  
+as they want to the search bar, and then click search to get the definition on Jisho. This combination of a good
+recognition algorithm, the ability to search multiple kanji at once, and the extensive data available on Jisho make  
+this the tool that any Japanese learner dreams of.
 
 ## License
 
