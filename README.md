@@ -5,6 +5,8 @@
 Try the tool here:  
 [kanji-handwriting-search.web.app](https://kanji-handwriting-search.web.app/public/index.html)
 
+![UI](UI.JPG)
+
 ## Description
 
 Kanji Handwriting Search is a website that Japanese learners can use to easily search for the meaning of unfamiliar  
