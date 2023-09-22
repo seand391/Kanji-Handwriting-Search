@@ -1,9 +1,6 @@
 # Kanji Handwriting Search
 
-## Website Link
-
-Try the tool here:  
-[kanji-handwriting-search.web.app](https://kanji-handwriting-search.web.app/public/index.html)
+Try the app for yourself at [kanji-handwriting-search.web.app](https://kanji-handwriting-search.web.app/public/index.html)
 
 ![UI](UI.JPG)
 
